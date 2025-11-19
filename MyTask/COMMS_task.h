@@ -59,11 +59,31 @@
 #define PA8 0x08
 #define PG7 0x07
 #define PG8 0x08
+#define PC15 0x15
+#define PC14 0x14
+#define PF2 0x02
+#define PF0 0x00
+#define PF4 0x04
+#define PF3 0x03
+#define PA11 0x11
+#define PA10 0x10
+#define PA9 0x09
+#define PA8 0xA8
+#define PG7 0x07
+#define PG8 0x08
+#define PC12 0x12
+#define PC11 0xC1
+#define PE1 0xE1
 // 地址
 #define R1_GAMEPAD 0x1921
 #define R2_GAMEPAD 0x1927
 #define R1_ROBOT 0x1945
 #define R2_ROBOT 0x1949
+// KFS
+#define EMPTY 0x00
+#define R1KFS 0x01
+#define R2KFS 0x02
+#define FAULSE 0x03
 // 参数增量计算
 float Calculate(void);
 #endif
