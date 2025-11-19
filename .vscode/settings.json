@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "main.h": "c",
+        "comms_task.h": "c",
+        "config.h": "c",
+        "nrf.h": "c",
+        "zigbee.h": "c",
+        "usart.h": "c",
+        "cmsis_os.h": "c"
+    }
+}
