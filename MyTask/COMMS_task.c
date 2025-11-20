@@ -3,6 +3,21 @@
 // 接收摇杆值在摇杆控制模式
 // 调参在调参模式,修改 “自行修改部分的参数即可”
 #include "COMMS_task.h"
+struct parameter_t
+{
+  float Kxp;
+  float Kxd;
+  float Kyp;
+  float Kyd;
+  float Kop;
+  float Kod;
+  float Vs;
+  float Ds;
+  float T1;
+  float T2;
+  float T3;
+  float T4;
+} parameter_YPB;
 extern zigbee_state_t zigbee_state;
 extern uint8_t zigbee_rxBuffer[100];
 extern DMA_HandleTypeDef hdma_uart4_rx;
@@ -15,8 +30,7 @@ extern int8_t y_R;
 extern uint8_t Adjust_txData[5]; 
 extern uint8_t Adjust_rxData[5];
 extern float addition;
-extern float Kf;
-extern float Kxp;
+
 // 参数增量计算 ----------------------------------------------------------------
 float Calculate(void)
 {
@@ -100,18 +114,18 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
       switch (Adjust_rxData[1])
       { // 请自行修改-----------------------
       // YPB ------------------------------
-      case Kxp_: Kxp += Calculate(); memcpy(&Adjust_txData[1], &Kf, 4); break;
-      case Kxd_: Kxp += Calculate(); memcpy(&Adjust_txData[1], &Kf, 4); break;
-      case Kyp_: Kxp += Calculate(); memcpy(&Adjust_txData[1], &Kf, 4); break;
-      case Kyd_: Kxp += Calculate(); memcpy(&Adjust_txData[1], &Kf, 4); break;
-      case Kop_: Kxp += Calculate(); memcpy(&Adjust_txData[1], &Kf, 4); break;
-      case Kod_: Kxp += Calculate(); memcpy(&Adjust_txData[1], &Kf, 4); break;
-      case Vs_: Kxp += Calculate(); memcpy(&Adjust_txData[1], &Kf, 4); break;
-      case Ds_: Kxp += Calculate();memcpy(&Adjust_txData[1], &Kf, 4); break;
-      case T1_: Kxp += Calculate(); memcpy(&Adjust_txData[1], &Kf, 4); break;
-      case T2_: Kxp += Calculate(); memcpy(&Adjust_txData[1], &Kf, 4); break;
-      case T3_: Kxp += Calculate(); memcpy(&Adjust_txData[1], &Kf, 4); break;
-      case T4_: Kxp += Calculate(); memcpy(&Adjust_txData[1], &Kf, 4); break;
+      case Kxp_: parameter_YPB.Kxp += Calculate(); memcpy(&Adjust_txData[1], &parameter_YPB.Kxp, 4); break;
+      case Kxd_: parameter_YPB.Kxd += Calculate(); memcpy(&Adjust_txData[1], &parameter_YPB.Kxd, 4); break;
+      case Kyp_: parameter_YPB.Kyp += Calculate(); memcpy(&Adjust_txData[1], &parameter_YPB.Kyp, 4); break;
+      case Kyd_: parameter_YPB.Kyd += Calculate(); memcpy(&Adjust_txData[1], &parameter_YPB.Kyd, 4); break;
+      case Kop_: parameter_YPB.Kop += Calculate(); memcpy(&Adjust_txData[1], &parameter_YPB.Kop, 4); break;
+      case Kod_: parameter_YPB.Kod += Calculate(); memcpy(&Adjust_txData[1], &parameter_YPB.Kod, 4); break;
+      case Vs_: parameter_YPB.Vs += Calculate(); memcpy(&Adjust_txData[1], &parameter_YPB.Vs, 4); break;
+      case Ds_: parameter_YPB.Ds += Calculate();memcpy(&Adjust_txData[1], &parameter_YPB.Ds, 4); break;
+      case T1_: parameter_YPB.T1 += Calculate(); memcpy(&Adjust_txData[1], &parameter_YPB.T1, 4); break;
+      case T2_: parameter_YPB.T2 += Calculate(); memcpy(&Adjust_txData[1], &parameter_YPB.T2, 4); break;
+      case T3_: parameter_YPB.T3 += Calculate(); memcpy(&Adjust_txData[1], &parameter_YPB.T3, 4); break;
+      case T4_: parameter_YPB.T4 += Calculate(); memcpy(&Adjust_txData[1], &parameter_YPB.T4, 4); break;
       default: break;
       }
       Adjust_txData[0] = ADJUST;

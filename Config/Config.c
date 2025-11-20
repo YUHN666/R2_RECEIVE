@@ -1,8 +1,6 @@
 #include "Config.h"
 
 
-float Kf = 1;
-float Kxp = 1;
 
 
 // zigbee--------------------------------------------------------------------
@@ -36,6 +34,12 @@ void Config_Init(void)
 {
     // NRF初始化
     // Nrf_Init(&nrf_test);
+
+
+
+    // 参数赋值
+
+
 
     // zigbee
     // 开启接收中断，由于数据不定长，故使用 DMA中断
