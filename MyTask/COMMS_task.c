@@ -18,6 +18,7 @@ struct parameter_t
   float T3;
   float T4;
 } parameter_YPB;
+
 extern zigbee_state_t zigbee_state;
 extern uint8_t zigbee_rxBuffer[100];
 extern DMA_HandleTypeDef hdma_uart4_rx;
@@ -30,7 +31,6 @@ extern int8_t y_R;
 extern uint8_t Adjust_txData[5]; 
 extern uint8_t Adjust_rxData[5];
 extern float addition;
-
 // 参数增量计算 ----------------------------------------------------------------
 float Calculate(void)
 {
@@ -86,6 +86,9 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
       {
         // 要进行的操作;
       }
+
+
+      
       // 以此类推
     }
     // 摇杆控制模式-------------------------------------------------------------------------
